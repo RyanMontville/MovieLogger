@@ -1,0 +1,78 @@
+@import 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0';
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Roboto:wght@400;900&display=swap');
+
+:root {
+    --nav-background: #b81f24;
+    --nav-color: #ffffff;
+    --white: #ffffff;
+    --body-background: #e5e5e5
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Roboto';
+}
+
+body {
+    font-family: 'Roboto Slab';
+    background-color: var(--body-background);
+}
+
+.material-symbols-outlined {
+    vertical-align: middle !important;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--nav-background);
+    color: var(--nav-color);
+    padding: 15px;
+}
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul li {
+    list-style: none;
+    margin: 0 10px;
+}
+
+nav a {
+    color: var(--nav-color);
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 900px;
+
+}
+
+.movie-info {
+    background-color: var(--white);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    margin: 5px 0;
+    padding: 10px;
+}
+
+.ratings {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
