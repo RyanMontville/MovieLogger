@@ -1,12 +1,11 @@
 import Link from 'next/link'
-import { Movie, Rating } from './movie.tsx'
-import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode, Key } from 'react'
+import { Result } from '../models/search-result.model.tsx'
+import SearchResult from '../components/SearchResult.tsx'
 
 async function getData() {
-  const res = await fetch('http://www.omdbapi.com/?i=tt3896198&apikey=766ffdd6')
+  const res = await fetch('http://www.omdbapi.com/?s=toy story&apikey=766ffdd6&type=movie')
 
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data')
   }
 
@@ -14,20 +13,13 @@ async function getData() {
 }
 
 export default async function Page() {
-  const data: Movie = await getData()
+  const data: {Search: Result[]} = await getData()
   return (
     <main>
       <h1>Search page</h1>
-      <article className='movie-info'>
-        <h2>{data.Title} ({data.Year})</h2>
-        <p>{data.Plot}</p>
-        <ul className="ratings">
-          {data.Ratings.map((rating: Rating) => (
-            <li>{rating.Source}: {rating.Value}</li>
-          ))}
-        </ul>
-        <img src={data.Poster} />
-      </article>
+      {data.Search.map((result: Result) => (
+        <SearchResult data={result} />
+      ))}
     </main>
   )
 }

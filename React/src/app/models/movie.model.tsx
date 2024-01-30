@@ -17,7 +17,8 @@ export class Movies {
         public Plot: String,
         public Type: String,
         public DVD: String,
-        public BoxOffice: String
+        public BoxOffice: String,
+        public imdbID: String
     ) {}
 }
 

@@ -65,6 +65,18 @@ main {
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     margin: 5px 0;
     padding: 10px;
+    display: flex;
+}
+
+.info {
+    margin: 0 10px;
+    flex-grow: 1;
+}
+
+.info-line {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
 }
 
 .ratings {
@@ -75,4 +87,21 @@ main {
     display: flex;
     justify-content: space-around;
     list-style: none;
+}
+
+.plot {
+    margin: 10px 5px;
+}
+
+.small-poster {
+    height: 300px;
+}
+
+.search-result {
+    background-color: var(--white);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    margin: 5px 0;
+    padding: 10px;
+    display: block;
 }
