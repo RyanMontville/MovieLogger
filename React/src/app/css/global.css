@@ -59,6 +59,13 @@ main {
 
 }
 
+.collection {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 0 20px;
+}
+
 .movie-info {
     background-color: var(--white);
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -89,6 +96,10 @@ main {
     list-style: none;
 }
 
+.ratings li img {
+    vertical-align: middle;
+}
+
 .plot {
     margin: 10px 5px;
 }
@@ -97,11 +108,11 @@ main {
     height: 300px;
 }
 
-.search-result {
-    background-color: var(--white);
+.search-result img {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    margin: 5px 0;
-    padding: 10px;
-    display: block;
+    transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+    margin: 5px;
 }
+.search-result img:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }

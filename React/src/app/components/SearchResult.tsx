@@ -1,10 +1,12 @@
 import { Result } from '../models/search-result.model.jsx';
-import { Movie, Rating } from './movie.model.tsx'
+import Link from 'next/link'
 
-export default function SearchResult(props: {data: Result}) {
+export default function SearchResult(props: { data: Result }) {
     const result = props.data;
-    return <article className="search-result">
-        <img src={result.Poster} className='small-poster'/>
-        <h2>{result.Title} ({result.Year})</h2>
-    </article>
+    const movieTitle = props.data.Title
+    return (<div className="search-result">
+        <Link href={`/search/${result.imdbID}`}>
+            <img src={result.Poster} className='small-poster' title={result.Title} />
+        </Link>
+    </div>)
 }

@@ -1,9 +1,9 @@
 export class Result {
     constructor(
-        public Title: String,
-        public Year: String,
-        public imdbID: String,
-        public Type: String,
-        public Poster: String
+        public Title: string,
+        public Year: string,
+        public imdbID: string,
+        public Type: string,
+        public Poster: string
     ) {}
 }

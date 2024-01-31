@@ -1,4 +1,14 @@
-import { Movie, Rating } from './movie.model.tsx'
+import { Movie, Rating } from './movie.model.tsx';
+import Image from 'next/image.js';
+
+function ratingsLogo(site: string) {
+    if(site == "Internet Movie Database")
+        return(<><Image src='/imdb.png' width="43" height="25" alt="IMDB" /></>)
+    if(site == "Rotten Tomatoes")
+        return(<><Image src='/rt.png' width="25" height="25" alt="Rotten Tomatoes" /></>)
+    if(site == "Metacritic")
+    return(<><Image src='/mc.png' width="25" height="25" alt="Metacritic" /></>)
+}
 
 export default function MovieInfo(props: Movie) {
     const movie = props.movie;
@@ -17,9 +27,10 @@ export default function MovieInfo(props: Movie) {
             <p className='plot'>{movie.Plot}</p>
             <ul className="ratings">
                 {movie.Ratings.map((rating: Rating) => (
-            <li>{rating.Source}: {rating.Value}</li>
+            <li>{ratingsLogo(rating.Source)} {rating.Value}</li>
           ))}
         </ul>
         </section>
+        
     </article>
 }

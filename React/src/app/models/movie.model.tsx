@@ -1,27 +1,27 @@
 export class Movies {
     constructor(
-        public Title: String,
-        public Year: String,
-        public Rated: String,
-        public Released: String,
-        public Runtime: String,
-        public Genre: String,
-        public Director: String,
-        public Writer: String,
-        public Actors: String,
-        public Language: String,
-        public Country: String,
-        public Awards: String,
-        public Poster: String,
+        public Title: string,
+        public Year: string,
+        public Rated: string,
+        public Released: string,
+        public Runtime: string,
+        public Genre: string,
+        public Director: string,
+        public Writer: string,
+        public Actors: string,
+        public Language: string,
+        public Country: string,
+        public Awards: string,
+        public Poster: string,
         public Ratings: Rating[],
-        public Plot: String,
-        public Type: String,
-        public DVD: String,
-        public BoxOffice: String,
-        public imdbID: String
+        public Plot: string,
+        public Type: string,
+        public DVD: string,
+        public BoxOffice: string,
+        public imdbID: string
     ) {}
 }
 
 export class Rating {
-    constructor(Source: String, Value: String) {}
+    constructor(Source: string, Value: string) {}
 }

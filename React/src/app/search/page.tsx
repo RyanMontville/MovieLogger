@@ -15,11 +15,17 @@ async function getData() {
 export default async function Page() {
   const data: {Search: Result[]} = await getData()
   return (
-    <main>
-      <h1>Search page</h1>
+    <div>
+      <main>
+      <h1>Results for Toy Story</h1>
+    </main>
+    <div className='collection'>
+      
+      
       {data.Search.map((result: Result) => (
         <SearchResult data={result} />
       ))}
-    </main>
+      </div>
+    </div>
   )
 }
