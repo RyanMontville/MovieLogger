@@ -9,8 +9,6 @@ export class Movies {
         public Director: string,
         public Writer: string,
         public Actors: string,
-        public Language: string,
-        public Country: string,
         public Awards: string,
         public Poster: string,
         public Ratings: Rating[],
