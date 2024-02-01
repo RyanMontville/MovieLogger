@@ -1,10 +1,10 @@
-package com.ryanmontville.movielogger;
+package com.ryanmontville.server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MovieloggerApplicationTests {
+class ServerApplicationTests {
 
 	@Test
 	void contextLoads() {

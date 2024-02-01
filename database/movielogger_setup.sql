@@ -15,7 +15,7 @@ CREATE TABLE movies (
 	title varchar(100) NOT NULL,
 	year varchar(5),
 	rated varchar(10),
-	relesed varchar(20),
+	released varchar(20),
 	runtime varchar(30),
 	genre varchar(100),
 	director varchar(50),
