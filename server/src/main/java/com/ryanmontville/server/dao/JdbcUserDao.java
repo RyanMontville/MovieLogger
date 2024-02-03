@@ -31,11 +31,44 @@ public class JdbcUserDao implements UserDao{
 
     @Override
     public User getUserByUsername(String username) {
-        return null;
+        User user = null;
+        String sql = "SELECT user_id, user_name, role FROM public.users WHERE user_name = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql,username);
+        if(result.next()) {
+            user = mapRowToUser(result);
+        }
+        return user;
     }
 
     @Override
-    public User getUserById(int userId) {
-        return null;
+    public User getUserById(int userId){
+        User user = null;
+        String sql = "SELECT user_id, user_name, role FROM public.users WHERE user_id = ?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql,userId);
+        if(result.next()) {
+            user = mapRowToUser(result);
+        }
+        return user;
+    }
+
+    @Override
+    public int createUSer(User newUser) {
+        String sql = "INSERT INTO public.users(user_id, user_name, role) VALUES (?, ?, ?);";
+        Integer userId = jdbcTemplate.queryForObject(sql,Integer.class,newUser.getUserId(),
+                newUser.getUsername(),newUser.getRole());
+        return userId;
+    }
+
+    public User mapRowToUser(SqlRowSet rowSet) {
+        try {
+            User user = new User();
+            user.setUserId(rowSet.getInt("user_id"));
+            user.setUsername(rowSet.getString("user_name"));
+            user.setRole(rowSet.getString("role"));
+            return user;
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
     }
 }

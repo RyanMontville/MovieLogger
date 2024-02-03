@@ -7,4 +7,5 @@ public interface UserDao {
     boolean isUsernameTaken(String username);
     User getUserByUsername(String username);
     User getUserById(int userId);
+    int createUSer(User newUser);
 }
