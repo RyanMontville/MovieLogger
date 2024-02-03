@@ -7,7 +7,6 @@ import java.util.List;
 public interface MovieDao {
     List<Movie> getAllMovies();
     Movie getMovieByImdbId(String imdbId);
-    Movie addMovie(Movie movie);
-    boolean checkForMovie(String imdbId);
+    int addMovie(Movie movie);
 
 }

@@ -24,9 +24,24 @@ public class MovieController {
     public List<Movie> getAllMovies() {
         return movieDao.getAllMovies();
     }
+    @RequestMapping(path = "/movies/{imdbId}", method = RequestMethod.GET)
+    public Movie getMovieByImdbId(String imdbId) {
+        Movie movie = movieDao.getMovieByImdbId(imdbId);
+        if(movie==null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not in local database.");
+        } else {
+            return movie;
+        }
+    }
 
     /*************************************** POST **************************************/
-
-    /*************************************** PUTS **************************************/
-    /************************************* DELETES *************************************/
+    @RequestMapping(path = "/movies", method = RequestMethod.POST)
+    public boolean addMovie(@RequestBody Movie movie) {
+        Movie movieCheck = movieDao.getMovieByImdbId(movie.getImdbId());
+        if(movieCheck == null) {
+            movieDao.addMovie(movie);
+            return true;
+        }
+        return false;
+    }
 }

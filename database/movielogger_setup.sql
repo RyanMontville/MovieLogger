@@ -5,12 +5,12 @@ DROP TABLE IF EXISTS user_lists, movies, users;
 CREATE TABLE users (
 	user_id serial NOT NULL,
 	user_name varchar(50) NOT NULL UNIQUE,
-	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
 	CONSTRAINT pk_user PRIMARY KEY (user_id)
 );
 
 CREATE TABLE movies (
+	movie_id serial NOT NULL,
 	imdb_id varchar(10) NOT NULL UNIQUE,
 	title varchar(100) NOT NULL,
 	year varchar(5),

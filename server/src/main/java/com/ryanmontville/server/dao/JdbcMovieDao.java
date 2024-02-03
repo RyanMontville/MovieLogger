@@ -44,13 +44,16 @@ public class JdbcMovieDao implements MovieDao {
     }
 
     @Override
-    public Movie addMovie(Movie movie) {
-        return null;
-    }
-
-    @Override
-    public boolean checkForMovie(String imdbId) {
-        return false;
+    public int addMovie(Movie movie) {
+        String sql = "INSERT INTO public.movies(imdb_id, title, year, rated, released, runtime, genre, " +
+                "director, writer, actors, awards, poster, plot, type, dvd, box_office, rt_rating, imdb_rating, mc_rating) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        Integer imdbId = jdbcTemplate.queryForObject(sql,Integer.class,movie.getImdbId(),movie.getTitle(),
+                movie.getYear(),movie.getRated(),movie.getReleased(),movie.getRuntime(),movie.getGenre(),
+                movie.getDirector(),movie.getWriter(),movie.getActors(),movie.getAwards(),movie.getPoster(),
+                movie.getPlot(),movie.getType(),movie.getDvd(),movie.getBox_office(),movie.getRt_rating(),
+                movie.getImdb_rating(),movie.getMc_rating());
+        return imdbId;
     }
 
     public Movie mapRowToMovie(SqlRowSet rowset) {
