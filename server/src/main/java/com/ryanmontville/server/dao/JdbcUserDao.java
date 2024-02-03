@@ -12,12 +12,6 @@ public class JdbcUserDao implements UserDao{
     public JdbcUserDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    @Override
-    public int createUser(User newUser) {
-        String sql = "INSERT INTO public.users(user_name, role) VALUES (?, ?);";
-        Integer userId = jdbcTemplate.queryForObject(sql,Integer.class,newUser.getUsername(),"user");
-        return userId;
-    }
 
     @Override
     public boolean isUsernameTaken(String username) {
@@ -52,7 +46,7 @@ public class JdbcUserDao implements UserDao{
     }
 
     @Override
-    public int createUSer(User newUser) {
+    public int createUser(User newUser) {
         String sql = "INSERT INTO public.users(user_id, user_name, role) VALUES (?, ?, ?);";
         Integer userId = jdbcTemplate.queryForObject(sql,Integer.class,newUser.getUserId(),
                 newUser.getUsername(),newUser.getRole());

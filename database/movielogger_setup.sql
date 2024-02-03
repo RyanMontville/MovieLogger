@@ -34,11 +34,12 @@ CREATE TABLE movies (
 );
 
 CREATE TABLE user_lists (
+	user_list_id serial NOT NULL,
 	imdb_id varchar(10) NOT NULL,
 	user_id int NOT NULL,
 	list varchar(10) NOT NULL,
 	rating int NULL,
-	CONSTRAINT pk_user_lists_imdb_id_user_id PRIMARY KEY (imdb_id, user_id),
+	CONSTRAINT pk_user_lists PRIMARY KEY (user_list_id),
 	CONSTRAINT fk_user_lists_imdb_id FOREIGN KEY (imdb_id) REFERENCES movies (imdb_id),
 	CONSTRAINT fk_user_lists_user_id FOREIGN KEY (user_id) REFERENCES users (user_id)
 );
