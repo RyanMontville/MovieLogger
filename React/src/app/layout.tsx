@@ -1,6 +1,7 @@
 import './css/global.css'
 import Navbar from "./components/navbar";
-import { Metadata } from 'next'
+import { Metadata } from 'next';
+import Providers from './redux/Provider';
 
 export const metadata: Metadata = {
   title: 'MovieLogger',
@@ -15,9 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
-        </body>
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
+      </body>
     </html>
   )
 }

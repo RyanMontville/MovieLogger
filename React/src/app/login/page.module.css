@@ -1,0 +1,42 @@
+.container {
+    max-width: 600px;
+    background-color: white;
+    border-radius: 20px;
+    margin: 10px auto;
+    padding: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: 5px;
+    width: 500px;
+}
+
+.button {
+    position: relative;
+    display: block;
+    margin: 30px auto;
+    padding: 10px;
+    font-size: 20px;
+    overflow: hidden;
+    border-width: 0;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+    background-color: #2ecc71;
+    color: #ecf0f1;
+    cursor: pointer;
+}
+
+.alertBox {
+    border: 1px solid red;
+}
