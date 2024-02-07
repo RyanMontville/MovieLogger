@@ -27,7 +27,7 @@ export default function Navbar() {
             {(username!=="") ? 
                 (<span>Welcome {username} | <button onClick={handleLogout}>Logout</button></span>)
             :
-                (<span><Link href="/login">Login</Link> | Sign Up</span>)
+                (<span><Link href="/login">Login</Link> | <Link href="/signup">Sign Up</Link></span>)
             }
         </ul>
     </nav>

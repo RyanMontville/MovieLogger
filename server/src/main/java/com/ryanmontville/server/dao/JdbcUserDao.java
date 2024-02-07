@@ -48,8 +48,8 @@ public class JdbcUserDao implements UserDao{
 
     @Override
     public int createUser(User newUser) {
-        String sql = "INSERT INTO public.users(user_id, user_name, role) VALUES (?, ?, ?);";
-        Integer userId = jdbcTemplate.queryForObject(sql,Integer.class,newUser.getUserId(),
+        String sql = "INSERT INTO public.users(user_name, role) VALUES (?, ?);";
+        Integer userId = jdbcTemplate.queryForObject(sql,Integer.class,
                 newUser.getUsername(),newUser.getRole());
         return userId;
     }

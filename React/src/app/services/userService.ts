@@ -11,7 +11,7 @@ export async function getUserByUsername(username: string) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newUser)
-    }).then(data => data.json());
+    }).then(data => data.json()).catch(e => e.status);
 }
 
 

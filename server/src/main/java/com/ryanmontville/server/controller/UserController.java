@@ -29,13 +29,13 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "/users", method = RequestMethod.POST)
-    public User newUser(@RequestBody User newUser) throws Exception {
+    public int newUser(@RequestBody User newUser) throws Exception {
         boolean isUsernameTaken = userDao.isUsernameTaken(newUser.getUsername());
         if(isUsernameTaken) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username already taken.");
         } else {
             int userId = userDao.createUser(newUser);
-            return userDao.getUserById(userId);
+            return userId;
         }
     }
 

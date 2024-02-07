@@ -7,12 +7,12 @@ import { useState } from "react";
 import { useRouter } from 'next/navigation'
 import { getUserByUsername } from "../services/userService";
 import { User } from "../models/user.model";
-import { ErrorStatus } from "../models/errorStatus.model";
 import Link from "next/link";
 
 export default function Login() {
     const [alert, setAlert] = useState("");
     const [showAlert, setShowAlert] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
@@ -23,19 +23,22 @@ export default function Login() {
         if (!username || !password) {
             updateAlert("Please enter a username and password");
         } else {
+            setLoading(true);
             getUserByUsername(username).then((result: any) => {
                 if (result.status === 404) {
+                    setLoading(false);
                     updateAlert("Username or password incorrect")
                 } else {
                     const user: User = {
-                    userId: result.userId,
-                    username: result.username,
-                    role: result.role
+                        userId: result.userId,
+                        username: result.username,
+                        role: result.role
+                    }
+                    dispatch(login(user));
+                    setLoading(false);
+                    router.push('/');
                 }
-                dispatch(login(user));
-                router.push('/');
-                }
-                
+
             });
         }
     }
@@ -74,9 +77,14 @@ export default function Login() {
                     className={style.input}
                     onChange={(e) => setPassword(e.target.value)}
                 ></input>
-                <button className={style.button} onClick={handleLogin}>Login</button>
-                <span> Don't have an account? <Link href="/signup">Sign Up</Link></span>
-                
+                {loading ? (
+                    <div className={style.ldsDualRing}></div>
+                ) : (
+                    <div>
+                        <button className={style.button} onClick={handleLogin}>Login</button>
+                        <span> Don't have an account? <Link href="/signup">Sign Up</Link></span>
+                    </div>
+                )}
             </form>
         </div>
     )
