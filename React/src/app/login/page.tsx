@@ -5,6 +5,8 @@ import { login } from "../redux/slices/userSlice";
 import style from "./page.module.css";
 import { useState } from "react";
 import { useRouter } from 'next/navigation'
+import { getUserByUsername } from "../services/userService";
+import { User } from "../models/user.model";
 
 export default function Login() {
     const [alert, setAlert] = useState("");
@@ -16,28 +18,31 @@ export default function Login() {
 
     function handleLogin(e: any) {
         e.preventDefault();
-        if(!username || !password) {
+        if (!username || !password) {
             updateAlert("Please enter a username and password");
         } else {
-            const user = {
-                userId: 69,
-                username: username,
-                role: "Admin"
-            }
-            dispatch(login(user));
-            router.push('/');
+            getUserByUsername(username).then((result: User) => {
+                const returned = JSON.stringify(result);
+                const user: User = {
+                    userId: result.userId,
+                    username: result.username,
+                    role: result.role
+                }
+                dispatch(login(user));
+                router.push('/');
+            });
         }
-        
+
 
     }
 
     function updateAlert(message: string) {
         setAlert(message);
-                setShowAlert(true);
-                setTimeout(() => {
-                    setAlert("");
-                    setShowAlert(false);
-                }, 5000);
+        setShowAlert(true);
+        setTimeout(() => {
+            setAlert("");
+            setShowAlert(false);
+        }, 5000);
     }
 
     return (
@@ -45,11 +50,11 @@ export default function Login() {
             <h1>Login</h1>
             {showAlert &&
                 <div className={style.alertBox}>
-                <span className="material-symbols-outlined">
-                    warning
-                </span>
-                {alert}
-            </div>
+                    <span className="material-symbols-outlined">
+                        warning
+                    </span>
+                    {alert}
+                </div>
             }
             <form className={style.form} onSubmit={handleLogin}>
                 <input
@@ -66,7 +71,7 @@ export default function Login() {
                     onChange={(e) => setPassword(e.target.value)}
                 ></input>
                 <button className={style.button} onClick={handleLogin}>Login</button>
-                </form>
+            </form>
         </div>
     )
 }

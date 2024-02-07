@@ -7,6 +7,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
+@Component
 public class JdbcUserDao implements UserDao{
     private final JdbcTemplate jdbcTemplate;
     public JdbcUserDao(JdbcTemplate jdbcTemplate) {

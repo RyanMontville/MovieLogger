@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { Result } from '../models/search-result.model.tsx'
-import SearchResult from '../components/SearchResult.tsx'
+import { Result } from '../models/search-result.model'
+import SearchResult from '../components/SearchResult'
 
 async function getData() {
   const res = await fetch('http://www.omdbapi.com/?s=toy story&apikey=766ffdd6&type=movie')

@@ -17,8 +17,8 @@ public class UserController {
         this.userDao = userDao;
     }
 
-    @RequestMapping(path = "user/{userName}", method = RequestMethod.GET)
-    public User getUserByUserId(String username) {
+    @RequestMapping(path = "users/{username}", method = RequestMethod.GET)
+    public User getUserByUsername(@PathVariable String username) {
         User user = userDao.getUserByUsername(username);
         if(user==null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found.");
