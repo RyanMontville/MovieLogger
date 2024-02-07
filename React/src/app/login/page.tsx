@@ -7,6 +7,8 @@ import { useState } from "react";
 import { useRouter } from 'next/navigation'
 import { getUserByUsername } from "../services/userService";
 import { User } from "../models/user.model";
+import { ErrorStatus } from "../models/errorStatus.model";
+import Link from "next/link";
 
 export default function Login() {
     const [alert, setAlert] = useState("");
@@ -21,19 +23,21 @@ export default function Login() {
         if (!username || !password) {
             updateAlert("Please enter a username and password");
         } else {
-            getUserByUsername(username).then((result: User) => {
-                const returned = JSON.stringify(result);
-                const user: User = {
+            getUserByUsername(username).then((result: any) => {
+                if (result.status === 404) {
+                    updateAlert("Username or password incorrect")
+                } else {
+                    const user: User = {
                     userId: result.userId,
                     username: result.username,
                     role: result.role
                 }
                 dispatch(login(user));
                 router.push('/');
+                }
+                
             });
         }
-
-
     }
 
     function updateAlert(message: string) {
@@ -71,6 +75,8 @@ export default function Login() {
                     onChange={(e) => setPassword(e.target.value)}
                 ></input>
                 <button className={style.button} onClick={handleLogin}>Login</button>
+                <span> Don't have an account? <Link href="/signup">Sign Up</Link></span>
+                
             </form>
         </div>
     )

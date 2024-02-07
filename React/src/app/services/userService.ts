@@ -2,7 +2,7 @@ import { User } from "../models/user.model";
 
 /***************************************** GETS *****************************************/
 export async function getUserByUsername(username: string) {
-    return fetch(`http://localhost:9000/users/${username}`).then(res => res.json());
+    return fetch(`http://localhost:9000/users/${username}`).then(res => res.json()).catch(e => e.status);
 }
   
 /**************************************** POSTS *****************************************/
