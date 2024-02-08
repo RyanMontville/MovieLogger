@@ -1,22 +1,20 @@
 "use client"
-import { useParams } from "next/navigation"
-import { Movie, Rating } from './movie.model.tsx'
-import MovieInfo from "@/app/components/movie-info"
+import { useParams } from "next/navigation";
+import MovieInfo from "@/app/components/movie-info";
+import { useEffect, useState } from "react";
+import { getMovieById } from "@/app/services/omdbService";
 
-async function getData(movieId: string) {
-    const res = await fetch(`http://www.omdbapi.com/?i=${movieId}&apikey=766ffdd6`)
-  
-    if (!res.ok) {
-      throw new Error('Failed to fetch data')
-    }
-  
-    return res.json()
-  }
-
-export default async function Page() {
+export default function Page() {
     const params = useParams<{ imdbid: string}>()
     const movieId = params.imdbid;
-    const data: Movie = await getData(movieId)
+    const [data, setData] = useState({});
+    
+    useEffect(() => {
+      getMovieById(movieId).then((result: any) => {
+        setData(result);
+      })
+    });
+
     return <main>
         <MovieInfo movie={data} />
       </main>

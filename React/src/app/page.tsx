@@ -13,8 +13,17 @@ export default  function Page() {
   }
 
   return <main>
-      <h1>Homepage</h1>
-      <p>This is the homepage.</p>
-      {(username !== "") && <p>Welcome, {username}</p>}
+      {(username !== "") ?
+        ( <div>
+            <h2>Movies on your watchlist</h2>
+            <p>(coming soon)</p>
+            <h2>Movies you have watched</h2>
+            <p>(coming soon)</p>
+        </div>)
+        :
+        (<div>
+            <h2>Screen seen when user is not logged in</h2>
+        </div>)
+      }
     </main>
 }

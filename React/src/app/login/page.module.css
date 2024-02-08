@@ -40,7 +40,9 @@
 .alertBox {
     border: 1px solid darkred;
     background-color: red;
+    border-radius: 5px;
     color: white;
+    padding: 10px;
 }
 
 .ldsDualRing {
