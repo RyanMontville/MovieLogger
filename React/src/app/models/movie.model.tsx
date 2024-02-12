@@ -1,25 +1,37 @@
-export class Movies {
+export class Movie {
     constructor(
-        public Title: string,
-        public Year: string,
-        public Rated: string,
-        public Released: string,
-        public Runtime: string,
-        public Genre: string,
-        public Director: string,
-        public Writer: string,
-        public Actors: string,
-        public Awards: string,
-        public Poster: string,
-        public Ratings: Rating[],
-        public Plot: string,
-        public Type: string,
-        public DVD: string,
-        public BoxOffice: string,
+        public title: string,
+        public year: string,
+        public rated: string,
+        public released: string,
+        public runtime: string,
+        public genre: string,
+        public director: string,
+        public writer: string,
+        public actors: string,
+        public awards: string,
+        public poster: string,
+        public plot: string,
+        public type: string,
+        public dvd: string,
+        public boxOffice: string,
         public imdbID: string
     ) {}
-}
 
-export class Rating {
-    constructor(Source: string, Value: string) {}
+    public rt_rating: string | undefined;
+    public imdb_rating: string | undefined;
+    public mc_rating: string | undefined;
+
+    public setImdb_rating(imdbRating: string) {
+        alert("setting imdb rating"+imdbRating);
+        this.imdb_rating = imdbRating;
+    }
+
+    public setRT_rating(RTRating: string) {
+        this.rt_rating = RTRating;
+    }
+
+    public setMC_rating(MCRating: string) {
+        this.mc_rating = MCRating;
+    }
 }

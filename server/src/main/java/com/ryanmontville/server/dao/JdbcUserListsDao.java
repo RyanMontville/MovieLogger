@@ -42,7 +42,8 @@ public class JdbcUserListsDao implements UserListsDao {
     @Override
     public List<UserList> getListsAndRatingsForUSer(int userId) {
         List<UserList> userList = new ArrayList<>();
-        String sql = "SELECT user_list_id, imdb_id, user_id, list, rating FROM public.user_lists " +
+        String sql = "SELECT user_list_id, title, poster, movies.imdb_id, list, rating " +
+                "FROM public.user_lists JOIN movies ON movies.imdb_id = user_lists.imdb_id " +
                 "WHERE user_id=?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
         while (results.next()) {
@@ -54,7 +55,8 @@ public class JdbcUserListsDao implements UserListsDao {
     @Override
     public UserList getListById(int userListId) {
         UserList userList = null;
-        String sql = "SELECT user_list_id, imdb_id, user_id, list, rating FROM public.user_lists " +
+        String sql = "SELECT user_list_id, title, poster, movies.imdb_id, list, rating " +
+                "FROM public.user_lists JOIN movies ON movies.imdb_id = user_lists.imdb_id " +
                 "WHERE user_list_id=?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql,userListId);
         if(result.next()) {
@@ -68,6 +70,8 @@ public class JdbcUserListsDao implements UserListsDao {
             UserList userList = new UserList();
             userList.setUserListId(rowSet.getInt("user_list_id"));
             userList.setImdbId(rowSet.getString("imdb_id"));
+            userList.setTitle(rowSet.getString("title"));
+            userList.setPoster(rowSet.getString("poster"));
             userList.setUserId(rowSet.getInt("user_id"));
             userList.setList(rowSet.getString("list"));
             userList.setRating(rowSet.getInt("rating"));

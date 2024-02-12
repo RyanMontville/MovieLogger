@@ -4,14 +4,19 @@ public class UserList {
     private int userListId;
     private int userId;
     private String imdbId;
+    private String title;
+    private String poster;
     private String list;
     private int rating;
 
     public UserList() {}
-    public UserList(int userListId, int userId, String imdbId, String list, int rating) {
+
+    public UserList(int userListId, int userId, String imdbId, String title, String poster, String list, int rating) {
         this.userListId = userListId;
         this.userId = userId;
         this.imdbId = imdbId;
+        this.title = title;
+        this.poster = poster;
         this.list = list;
         this.rating = rating;
     }
@@ -38,6 +43,22 @@ public class UserList {
 
     public void setImdbId(String imdbId) {
         this.imdbId = imdbId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
     }
 
     public String getList() {

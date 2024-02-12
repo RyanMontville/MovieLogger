@@ -1,4 +1,4 @@
-import { Movies } from "../models/movie.model";
+import { Movie } from "../models/movie.model";
 
 /***************************************** GETS *****************************************/
 export async function getAllMovies() {
@@ -11,7 +11,7 @@ export async function getMovieByImdbId(imdbId: string) {
   
   
 /**************************************** POSTS *****************************************/
-export async function newMovie(newMovie: Movies) {
+export async function newMovie(newMovie: Movie) {
     return fetch('http://localhost:9000/movies', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
