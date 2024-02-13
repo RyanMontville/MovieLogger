@@ -8,6 +8,7 @@ public interface UserListsDao {
     int addToList(UserList userList);
     void updateList(UserList updatedList);
     void updateRating(UserList updatedRating);
-    List<UserList> getListsAndRatingsForUSer(int userId);
+    List<UserList> getListsAndRatingsForUser(int userId);
     UserList getListById(int userListId);
+    boolean isMovieOnList(String imdbId, int UserId);
 }

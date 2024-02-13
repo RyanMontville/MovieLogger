@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class JdbcUserListsDao implements UserListsDao {
 
     private final JdbcTemplate jdbcTemplate;
@@ -18,9 +19,9 @@ public class JdbcUserListsDao implements UserListsDao {
     }
     @Override
     public int addToList(UserList userList) {
-        String sql = "INSERT INTO public.user_lists(user_list_id, imdb_id, user_id, list) " +
-                "VALUES (?, ?, ?, ?);";
-        Integer userListId = jdbcTemplate.queryForObject(sql,Integer.class,userList.getUserListId(),
+        String sql = "INSERT INTO public.user_lists(imdb_id, user_id, list) " +
+                "VALUES (?, ?, ?);";
+        Integer userListId = jdbcTemplate.queryForObject(sql,Integer.class,
                 userList.getImdbId(),userList.getUserId(),userList.getList());
         return userListId;
     }
@@ -40,7 +41,7 @@ public class JdbcUserListsDao implements UserListsDao {
     }
 
     @Override
-    public List<UserList> getListsAndRatingsForUSer(int userId) {
+    public List<UserList> getListsAndRatingsForUser(int userId) {
         List<UserList> userList = new ArrayList<>();
         String sql = "SELECT user_list_id, title, poster, movies.imdb_id, list, rating " +
                 "FROM public.user_lists JOIN movies ON movies.imdb_id = user_lists.imdb_id " +
@@ -63,6 +64,17 @@ public class JdbcUserListsDao implements UserListsDao {
             userList = mapRowToUserList(result);
         }
         return userList;
+    }
+
+    @Override
+    public boolean isMovieOnList(String imdbId, int userId) {
+        String sql = "SELECT user_list_id, imdb_id, user_id, list, rating " +
+                "FROM public.user_lists WHERE imdb_id=? AND user_id=?;";
+        SqlRowSet result = jdbcTemplate.queryForRowSet(sql, imdbId, userId);
+        if(result.next()) {
+            return true;
+        }
+        return false;
     }
 
     public UserList mapRowToUserList(SqlRowSet rowSet) {
