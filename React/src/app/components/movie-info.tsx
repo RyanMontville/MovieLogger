@@ -1,5 +1,6 @@
 import { Movie } from '../models/movie.model';
 import Image from 'next/image.js';
+import { newMovie } from '../services/movieService';
 
 function ratingsLogo(site: string) {
     if(site == "Internet Movie Database")
@@ -13,6 +14,12 @@ function ratingsLogo(site: string) {
 export default function MovieInfo(props: any) {
     const movie: Movie = props.movie;
     const movjson = JSON.stringify(movie);
+
+    function handleAddMovie() {
+        alert(JSON.stringify(movie))
+        const response = newMovie(movie);
+        alert(JSON.stringify(response));
+    }
     return <article className="movie-info">
         <img src={movie.poster} />
         <section className='info'>
@@ -27,11 +34,10 @@ export default function MovieInfo(props: any) {
             <p><b>Starring:</b> {movie.actors}</p>
             <p className='plot'>{movie.plot}</p>
             <ul className="ratings">
-                {movie.rt_rating && <li><Image src='/rt.png' width="25" height="25" alt="Rotten Tomatoes" /> {movie.rt_rating}</li>}
-                {movie.imdb_rating && <li><Image src='/imdb.png' width="43" height="25" alt="IMDB" /> {movie.imdb_rating}</li>}
-                {movie.mc_rating && <li><Image src='/mc.png' width="25" height="25" alt="Metacritic" /> {movie.mc_rating}</li>}
+                {movie.imdb_rating && <li><Image src='/imdb.png' width="43" height="25" alt="IMDB" /> {movie.imdb_rating}/10</li>}
+                {movie.mc_rating && <li><Image src='/mc.png' width="25" height="25" alt="Metacritic" /> {movie.mc_rating}%</li>}
             </ul>
-            {movjson}
+            <button onClick={handleAddMovie}>Add movie to database</button>
         </section>
     </article>
 }

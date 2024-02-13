@@ -25,7 +25,7 @@ public class MovieController {
         return movieDao.getAllMovies();
     }
     @RequestMapping(path = "/movies/{imdbId}", method = RequestMethod.GET)
-    public Movie getMovieByImdbId(String imdbId) {
+    public Movie getMovieByImdbId(@PathVariable String imdbId) {
         Movie movie = movieDao.getMovieByImdbId(imdbId);
         if(movie==null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Movie not in local database.");

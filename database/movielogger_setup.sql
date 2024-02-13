@@ -27,7 +27,6 @@ CREATE TABLE movies (
 	type varchar(50),
 	dvd varchar(30),
 	box_office varchar(50),
-	rt_rating varchar(10),
 	imdb_rating varchar(10),
 	mc_rating varchar(10),
 	CONSTRAINT pk_movie PRIMARY KEY (imdb_id)

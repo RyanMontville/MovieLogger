@@ -25,7 +25,7 @@ public class Movie {
     public Movie(String imdbId, String title, String year, String rated, String released,
                  String runtime, String genre, String director, String writer, String actors,
                  String awards, String poster, String plot, String type, String dvd,
-                 String box_office, String rt_rating, String imdb_rating, String mc_rating) {
+                 String box_office, String imdb_rating, String mc_rating) {
         this.imdbId = imdbId;
         this.title = title;
         this.year = year;
@@ -42,7 +42,6 @@ public class Movie {
         this.type = type;
         this.dvd = dvd;
         this.box_office = box_office;
-        this.rt_rating = rt_rating;
         this.imdb_rating = imdb_rating;
         this.mc_rating = mc_rating;
     }
@@ -109,10 +108,6 @@ public class Movie {
 
     public String getBox_office() {
         return box_office;
-    }
-
-    public String getRt_rating() {
-        return rt_rating;
     }
 
     public String getImdb_rating() {
@@ -185,10 +180,6 @@ public class Movie {
 
     public void setBox_office(String box_office) {
         this.box_office = box_office;
-    }
-
-    public void setRt_rating(String rt_rating) {
-        this.rt_rating = rt_rating;
     }
 
     public void setImdb_rating(String imdb_rating) {

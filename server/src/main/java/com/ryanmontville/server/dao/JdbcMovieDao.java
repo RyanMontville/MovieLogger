@@ -21,7 +21,7 @@ public class JdbcMovieDao implements MovieDao {
     public List<Movie> getAllMovies() {
         List<Movie> movies = new ArrayList<>();
         String sql = "SELECT imdb_id, title, year, rated, released, runtime, genre, director, writer, " +
-                "actors, awards, poster, plot, type, dvd, box_office, rt_rating, imdb_rating, mc_rating " +
+                "actors, awards, poster, plot, type, dvd, box_office, imdb_rating, mc_rating " +
                 "FROM public.movies ORDER BY title ASC;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
         while (result.next()) {
@@ -33,9 +33,7 @@ public class JdbcMovieDao implements MovieDao {
     @Override
     public Movie getMovieByImdbId(String imdbId) {
         Movie movie = null;
-        String sql = "SELECT imdb_id, title, year, rated, released, runtime, genre, director, writer, " +
-                "actors, awards, poster, plot, type, dvd, box_office, rt_rating, imdb_rating, mc_rating " +
-                "FROM public.movies WHERE imdb_id=?;";
+        String sql = "SELECT movie_id, imdb_id, title, year, rated, released, runtime, genre, director, writer, actors, awards, poster, plot, type, dvd, box_office, imdb_rating, mc_rating FROM public.movies WHERE imdb_id=?;";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql,imdbId);
         if(result.next()){
             movie = mapRowToMovie(result);
@@ -46,12 +44,12 @@ public class JdbcMovieDao implements MovieDao {
     @Override
     public int addMovie(Movie movie) {
         String sql = "INSERT INTO public.movies(imdb_id, title, year, rated, released, runtime, genre, " +
-                "director, writer, actors, awards, poster, plot, type, dvd, box_office, rt_rating, imdb_rating, mc_rating) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+                "director, writer, actors, awards, poster, plot, type, dvd, box_office, imdb_rating, mc_rating) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         Integer imdbId = jdbcTemplate.queryForObject(sql,Integer.class,movie.getImdbId(),movie.getTitle(),
                 movie.getYear(),movie.getRated(),movie.getReleased(),movie.getRuntime(),movie.getGenre(),
                 movie.getDirector(),movie.getWriter(),movie.getActors(),movie.getAwards(),movie.getPoster(),
-                movie.getPlot(),movie.getType(),movie.getDvd(),movie.getBox_office(),movie.getRt_rating(),
+                movie.getPlot(),movie.getType(),movie.getDvd(),movie.getBox_office(),
                 movie.getImdb_rating(),movie.getMc_rating());
         return imdbId;
     }
@@ -75,7 +73,6 @@ public class JdbcMovieDao implements MovieDao {
             movie.setType(rowset.getString("type"));
             movie.setDvd(rowset.getString("dvd"));
             movie.setBox_office(rowset.getString("box_office"));
-            movie.setRt_rating(rowset.getString("rt_rating"));
             movie.setImdb_rating(rowset.getString("imdb_rating"));
             movie.setMc_rating(rowset.getString("mc_rating"));
             return movie;

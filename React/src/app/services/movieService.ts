@@ -5,7 +5,7 @@ export async function getAllMovies() {
     return fetch(`http://localhost:9000/movies`).then(res => res.json());
 }
 export async function getMovieByImdbId(imdbId: string) {
-    return fetch(`http://localhost:9000//movies/${imdbId}`).then(res => res.json());
+    return fetch(`http://localhost:9000/movies/${imdbId}`).then(res => res.json());
 }
 
   

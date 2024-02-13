@@ -15,23 +15,9 @@ export class Movie {
         public type: string,
         public dvd: string,
         public boxOffice: string,
-        public imdbID: string
+        public imdbId: string,
+        public imdb_rating: string,
+        public mc_rating: string
+
     ) {}
-
-    public rt_rating: string | undefined;
-    public imdb_rating: string | undefined;
-    public mc_rating: string | undefined;
-
-    public setImdb_rating(imdbRating: string) {
-        alert("setting imdb rating"+imdbRating);
-        this.imdb_rating = imdbRating;
-    }
-
-    public setRT_rating(RTRating: string) {
-        this.rt_rating = RTRating;
-    }
-
-    public setMC_rating(MCRating: string) {
-        this.mc_rating = MCRating;
-    }
 }
